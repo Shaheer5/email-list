@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./EmailForm.css";
 import validator from "validator";
+import { toast } from "react-toastify";
 
 const EmailForm = () => {
   const [formData, setFormData] = useState({
@@ -70,7 +71,6 @@ const EmailForm = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-          mode: "no-cors",
         });
 
         const data = await response.json();
@@ -84,11 +84,13 @@ const EmailForm = () => {
 
           // Reset form
           setFormData({ name: "", email: "", message: "" });
+          toast.success("User Saved Successfully");
         } else {
           throw new Error(data.message || "Something went wrong");
         }
         setIsSubmitting(false);
       } catch (error) {
+        toast.error("Something went wrong");
         setIsSubmitting(false);
         setSubmitStatus({
           submitted: true,

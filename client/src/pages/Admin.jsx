@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Admin.css";
+import { toast } from "react-toastify";
 
 const Admin = () => {
   const [submissions, setSubmissions] = useState([]);
@@ -18,7 +19,6 @@ const Admin = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "no-cors",
       });
 
       if (!response.ok) {
@@ -28,8 +28,10 @@ const Admin = () => {
       const data = await response.json();
       console.log("Fetched data:", data);
       setSubmissions(data.data.users || []);
+      toast.success("User Saved Successfully");
     } catch (err) {
       setError(err.message || "An error occurred while fetching data");
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
