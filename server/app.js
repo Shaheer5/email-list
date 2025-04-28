@@ -12,13 +12,22 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // CORS configuration
-app.use(
-  cors({
-    origin: "https://email-list-weld.vercel.app" || "http://localhost:5173",
-    methods: ["GET", "POST", "PATCH", "DELETE", "PUT", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://email-list-weld.vercel.app"
+];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PATCH", "DELETE", "PUT", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
 
 // Body parser
 app.use(express.json({ limit: "10kb" }));
