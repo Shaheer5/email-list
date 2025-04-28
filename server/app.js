@@ -23,14 +23,14 @@ app.use(
 // Body parser
 app.use(express.json({ limit: "10kb" }));
 
+
+// Router
+app.use("/api/v1", userRouter);
+
 // Base route for health check
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Server is up and running! 🚀" });
 });
-
-
-// Router
-app.use("/api/v1", userRouter);
 
 // Handling unhandled routes (operational errors)
 app.all("*", (req, res, next) => {
