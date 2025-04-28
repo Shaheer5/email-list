@@ -13,12 +13,11 @@ const Admin = () => {
     setError(null);
 
     try {
-      const response = await fetch("https://email-list-server.vercel.app", {
+      const response = await fetch("http://localhost:3000/api/v1/email-list", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "no-cors",
       });
 
       if (!response.ok) {

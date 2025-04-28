@@ -64,13 +64,12 @@ const EmailForm = () => {
         setSubmitStatus({ submitted: true, success: false, message: "Sending..." });
 
         // Replace with your actual API endpoint
-        const response = await fetch("https://email-list-server.vercel.app", {
+        const response = await fetch("http://localhost:3000/api/v1/contact", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-          mode: "no-cors",
         });
 
         const data = await response.json();
