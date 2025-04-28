@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 // CORS configuration
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow your React frontend origin
+    origin: "https://email-list-weld.vercel.app" || "http://localhost:5173",
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
