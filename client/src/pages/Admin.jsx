@@ -28,7 +28,7 @@ const Admin = () => {
       const data = await response.json();
       console.log("Fetched data:", data);
       setSubmissions(data.data.users || []);
-      toast.success("User Saved Successfully");
+      toast.success("Fetched All Users");
     } catch (err) {
       setError(err.message || "An error occurred while fetching data");
       toast.error("Something went wrong");
