@@ -70,6 +70,7 @@ const EmailForm = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
+          mode: "no-cors",
         });
 
         const data = await response.json();
